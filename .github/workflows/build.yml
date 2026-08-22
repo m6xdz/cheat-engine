@@ -15,8 +15,8 @@ jobs:
 
     - run: lazbuild --build-mode="Release" "Cheat Engine/cheatengine.lpi"
 
-    - name: Upload Cheat Engine Binary
+    - name: Upload Full Bin Folder
       uses: actions/upload-artifact@v4
       with:
-        name: CheatEngine-EXE
-        path: Cheat Engine/bin/cheatengine*.exe
+        name: CheatEngine-Full
+        path: Cheat Engine/bin/
