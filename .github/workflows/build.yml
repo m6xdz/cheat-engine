@@ -13,4 +13,4 @@ jobs:
       with:
         lazarus-version: 2.2.2
 
-    - run: lazbuild --build-mode="Release" cheatengine.lpi
+    - run: lazbuild --build-mode="Release" "Cheat Engine/cheatengine.lpi"
