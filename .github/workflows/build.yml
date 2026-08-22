@@ -16,9 +16,16 @@ jobs:
     - run: lazbuild --build-mode="Release" "Cheat Engine/cheatengine.lpi"
 
     - name: Copy TCC and Dependencies
+      shell: pwsh
       run: |
-        xcopy /E /I "Cheat Engine\bin\tcc" "Cheat Engine\bin\tcc" || echo "TCC copy skipped"
-        if exist "Cheat Engine\tcc" xcopy /E /I /Y "Cheat Engine\tcc" "Cheat Engine\bin\tcc\"
+        $srcTcc = "Cheat Engine/tcc"
+        $destTcc = "Cheat Engine/bin/tcc"
+        if (Test-Path $srcTcc) {
+            if (!(Test-Path $destTcc)) {
+                New-Item -ItemType Directory -Force -Path $destTcc | Out-Null
+            }
+            Copy-Item -Recurse -Force "$srcTcc/*" $destTcc
+        }
 
     - name: Upload Full Bin Folder
       uses: actions/upload-artifact@v4
